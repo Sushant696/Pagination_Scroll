@@ -1,9 +1,10 @@
 import "./App.css";
+import MovieList from "./movies";
 
 function App() {
   return (
     <>
-      <h1>Welcome to the Pagination and optimization application..</h1>
+      <MovieList />
     </>
   );
 }
