@@ -1,9 +1,14 @@
 import { Movie } from "./movie.model.js";
 
-const getAllMovies = async (_, res) => {
+const getAllMovies = async (req, res) => {
   // pagination stuff goes here
+  const page = req.query.page || 0; // give the current page 0,1,2,3 || default 0
+  const moviePerPage = 3; // movies per page
   try {
-    const movie = await Movie.find({});
+    // skip the books that are
+    const movie = await Movie.find({})
+      .skip(page * moviePerPage)
+      .limit(moviePerPage);
     console.log(movie);
     return res.status(200).json({ movie });
   } catch (error) {
@@ -11,8 +16,8 @@ const getAllMovies = async (_, res) => {
   }
 };
 
- const updateMovie = async (req, res) => {
-  const {params} = req.params;
+const updateMovie = async (req, res) => {
+  const { params } = req.params;
   try {
     const movie = await Movie.find({});
     console.log(movie);
