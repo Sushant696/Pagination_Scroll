@@ -6,11 +6,11 @@ const getAllMovies = async (req, res) => {
   const moviePerPage = 3; // movies per page
   try {
     // skip the books that are
+    const total = await Movie.countDocuments();
     const movie = await Movie.find({})
       .skip(page * moviePerPage)
       .limit(moviePerPage);
-    console.log(movie);
-    return res.status(200).json({ movie });
+    return res.status(200).json({ movie, totalCount: total,limit:moviePerPage });
   } catch (error) {
     throw new Error("Error occurred", error);
   }
