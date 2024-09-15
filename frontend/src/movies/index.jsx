@@ -1,26 +1,27 @@
 import React from "react";
 import useMovies from "../hooks/useMovies";
-import { Link } from "react-router-dom";
-
-function HandlePaginationButton() {
-  let total = 6 / 3;
-  for (let i = 1; i < total; i++) {
-    return <h1>{i}</h1>;
-  }
-}
+import { Link, useSearchParams } from "react-router-dom";
+import { Pagination } from "@mui/material";
 
 function MovieList() {
-  const { data, isLoading, isError } = useMovies();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get("page") || 0;
+  const { data, isLoading, isError } = useMovies(page);
+
   const total = data?.totalCount;
-  console.log(total);
+  const limit = data?.limit;
+  const displayNumbers = Math.ceil(total / limit);
+
   if (isLoading) {
     return <h1 className="text-8xl text-green-400 text-center">Loading </h1>;
   }
+
   if (isError) {
     return <h1>Something went wrong</h1>;
   }
+
   return (
-    <div>
+    <div className="w-full">
       <h1 className="text-center text-3xl font-semibold my-10">
         Welcome to the movie App.
       </h1>
@@ -66,14 +67,30 @@ function MovieList() {
             </div>
           );
         })}
-        <div>
-          here will be number
-          <HandlePaginationButton />
-          <h1></h1>
+      </div>
+      <div className="my-10">
+        {/*
+        <div className="flex justify-center">
+          <h1>MUI Component </h1>
+          <Pagination count={displayNumbers} />
+        </div>*/}
+        <div className="flex space-x-2 justify-center mt-4">
+          {Array.from({ length: displayNumbers }, (_, i) => (
+            <Link
+              to={`?page=${i}`}
+              onClick={() => setSearchParams({ page: i })}
+              key={i}
+             className={`${
+              page == i
+                ? "bg-indigo-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            } py-2 px-4 rounded-lg hover:bg-gray-300`}            >
+              {i + 1}
+            </Link>
+          ))}
         </div>
       </div>
     </div>
   );
 }
-
 export default MovieList;
