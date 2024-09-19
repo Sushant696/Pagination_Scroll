@@ -1,16 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MovieList from "./movies";
+import Toogle from "./components/Toogle";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MovieList />} />
+        <Route path="/" element={<Toogle />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
