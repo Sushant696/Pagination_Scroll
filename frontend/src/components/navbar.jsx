@@ -1,6 +1,12 @@
 import { Search } from "lucide-react";
+import { useState } from "react";
 
 function Navbar() {
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState();
+  function handleChange(e) {
+    setSelectedAlgorithm(e.target.value);
+  }
+
   return (
     <div className="flex justify-between py-4 px-20 bg-blue-200 ">
       <h1 className="text-blue-500 text-3xl font-bold">FlickSort</h1>
@@ -8,6 +14,8 @@ function Navbar() {
         <div className="w-full">
           <select
             name="Algorithm"
+            onChange={handleChange}
+            value={selectedAlgorithm}
             className="w-full h-full bg-white rounded-lg p-2 "
           >
             <option value="Binary Search">Binary Search</option>
