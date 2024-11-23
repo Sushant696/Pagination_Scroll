@@ -3,7 +3,7 @@ import { Movie } from "./movie.model.js";
 const getAllMovies = async (req, res) => {
   // pagination stuff goes here
   const page = req.query.page || 0 // give the current page 0,1,2,3 || default 0
-  const moviePerPage = 2 // movies per page
+  const moviePerPage = 6 // movies per page
   try {
     // skip the books that are
     const total = await Movie.countDocuments();

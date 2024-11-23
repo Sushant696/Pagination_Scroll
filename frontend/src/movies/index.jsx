@@ -1,7 +1,5 @@
-import React from "react";
 import useMovies from "../hooks/useMovies";
 import { Link, useSearchParams } from "react-router-dom";
-import Toogle from "../components/Toogle";
 
 function PaginationComp() {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
 function Sorting() {
   return (
-    <div>Sorting</div>
-  )
+    <div>
+      Sorting
+      <h1>file changed</h1>
+    </div>
+  );
 }
 
-export default Sorting
+export default Sorting;
