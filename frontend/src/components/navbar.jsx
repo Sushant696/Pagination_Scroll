@@ -16,18 +16,16 @@ function Navbar() {
             name="Algorithm"
             onChange={handleChange}
             value={selectedAlgorithm}
-            className="w-full h-full bg-white rounded-lg p-2 "
+            className="w-full h-full bg-white rounded-lg p-3"
           >
             <option value="Binary Search">Binary Search</option>
             <option value="Linear Search">Linear Search</option>
-            <option value="Interpolation Search">Interpolation Search</option>
-            <option value="Sublist Search">Sublist Search</option>
           </select>
         </div>
         <div className="flex">
           <input
             type=""
-            className="rounded-l-lg px-4"
+            className="rounded-l-lg px-4 outline-none"
             placeholder="Search for Movies"
           />
           <div className="bg-blue-500 p-3 rounded-r-lg">

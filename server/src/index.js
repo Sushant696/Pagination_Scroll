@@ -1,7 +1,7 @@
 import express from "express";
-import movieRouter from "./src/movie/movie.routes.js";
+import movieRouter from "./movie/movie.routes.js";
 import dotenv from "dotenv";
-import connection from "./src/db/connection.js";
+import connection from "./db/connection.js";
 import cors from "cors";
 
 const app = express();
@@ -14,6 +14,7 @@ app.use(cors("http://localhost:5173/"));
 app.use("/server/uploads", express.static("uploads"));
 // Routers
 app.use("/api/movie", movieRouter);
+console.log("Server is up and running")
 
 dotenv.config();
 connection()
