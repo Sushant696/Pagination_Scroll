@@ -2,15 +2,15 @@ import { Movie } from "./movie.model.js";
 
 const getAllMovies = async (req, res) => {
   // pagination stuff goes here
-  const page = req.query.page || 0; // give the current page 0,1,2,3 || default 0
-  const moviePerPage = 3; // movies per page
+  const page = req.query.page || 0 // give the current page 0,1,2,3 || default 0
+  const moviePerPage = 2 // movies per page
   try {
     // skip the books that are
+    const total = await Movie.countDocuments();
     const movie = await Movie.find({})
       .skip(page * moviePerPage)
       .limit(moviePerPage);
-    console.log(movie);
-    return res.status(200).json({ movie });
+    return res.status(200).json({ movie, totalCount: total,limit:moviePerPage });
   } catch (error) {
     throw new Error("Error occurred", error);
   }
